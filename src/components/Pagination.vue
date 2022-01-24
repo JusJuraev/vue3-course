@@ -127,6 +127,7 @@
       cursor: pointer;
       padding: spacing(1) spacing(2);
       min-width: spacing(7);
+      text-align: center;
 
       &.active-page {
         background: rgba($colorPrimary, 0.16);
