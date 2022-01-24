@@ -35,7 +35,7 @@
 <script lang="ts">
   import { defineComponent, PropType, ref } from "vue"
   import { useRoute, useRouter } from "vue-router"
-  import { getPages, PageArrowPositions } from "@/helpers/pagination"
+  import { getPages, MorePages } from "@/helpers/pagination"
 
   export default defineComponent({
     name: "Pagination",
@@ -84,8 +84,8 @@
         })
       }
 
-      const navigate = (page: number | PageArrowPositions) => {
-        if (page === PageArrowPositions.MORE) {
+      const navigate = (page: number | MorePages) => {
+        if (page === MorePages.MORE) {
           return
         }
 

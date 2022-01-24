@@ -1,8 +1,6 @@
 import { range } from "@/helpers/range"
 
-export enum PageArrowPositions {
-  // LEFT_PAGE = "LEFT",
-  // RIGHT_PAGE = "RIGHT",
+export enum MorePages {
   MORE = "..."
 }
 
@@ -12,9 +10,7 @@ interface GetPagesParams {
   pageNeighbours: number
 }
 
-export function getPages(
-  params: GetPagesParams
-): Array<number | PageArrowPositions> {
+export function getPages(params: GetPagesParams): Array<number | MorePages> {
   const { totalPages, currentPage, pageNeighbours } = params
   /**
    * totalNums: the total page numbers to show on the control
@@ -39,11 +35,10 @@ export function getPages(
     const spillOffset = totalNumbers - (pages.length + 1)
 
     if (hasLeftSpill && !hasRightSpill) {
-      // handle: (1) < {5 6} [7] {8 9} (10)
+      // handle: (1) ... {5 6} [7] {8 9} (10)
       const extraPages = range(startPage - spillOffset, startPage)
       const formedPages = [
-        // PageArrowPositions.LEFT_PAGE,
-        PageArrowPositions.MORE,
+        MorePages.MORE,
         ...extraPages,
         ...pages
       ]
@@ -51,25 +46,22 @@ export function getPages(
     }
 
     if (!hasLeftSpill && hasRightSpill) {
-      // handle: (1) {2 3} [4] {5 6} > (10)
+      // handle: (1) {2 3} [4] {5 6} ... (10)
       const extraPages = range(endPage + 1, endPage + spillOffset + 1)
       const formedPages = [
         ...pages,
         ...extraPages,
-        PageArrowPositions.MORE
-        // PageArrowPositions.RIGHT_PAGE
+        MorePages.MORE
       ]
       return [1, ...formedPages, totalPages]
     }
 
     if (hasLeftSpill && hasRightSpill) {
-      // handle: (1) < {4 5} [6] {7 8} > (10)
+      // handle: (1) ... {4 5} [6] {7 8} ... (10)
       const formedPages = [
-        // PageArrowPositions.LEFT_PAGE,
-        PageArrowPositions.MORE,
+        MorePages.MORE,
         ...pages,
-        PageArrowPositions.MORE
-        // PageArrowPositions.RIGHT_PAGE
+        MorePages.MORE
       ]
       return [1, ...formedPages, totalPages]
     }
