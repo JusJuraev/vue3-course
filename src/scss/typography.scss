@@ -1,0 +1,68 @@
+@import "./variables";
+@import "./functions";
+
+@mixin fontTitleLarge {
+  font-size: $fontSizeTitleLarge;
+  font-weight: $fontExtraLight;
+  line-height: spacing(12);
+}
+
+@mixin fontTitle1 {
+  font-size: $fontSizeTitle1;
+  font-weight: $fontExtraLight;
+  line-height: spacing(10);
+}
+
+@mixin fontTitle2 {
+  font-size: $fontSizeTitle2;
+  font-weight: $fontBold;
+  line-height: spacing(8);
+}
+
+@mixin fontTitle3 {
+  font-size: $fontSizeTitle3;
+  font-weight: $fontSemiBold;
+  line-height: spacing(8);
+}
+
+@mixin fontHeadline {
+  font-size: $fontSizeHeadline;
+  font-weight: $fontMedium;
+  line-height: spacing(6);
+}
+
+@mixin fontSubHeadline {
+  font-size: $fontSizeSubHeadline;
+  font-weight: $fontSemiBold;
+  line-height: spacing(5);
+}
+
+@mixin fontBody {
+  font-size: $fontSizeBody;
+  font-weight: $fontNormal;
+  line-height: spacing(6);
+}
+
+@mixin fontCallout {
+  font-size: $fontSizeCallout;
+  font-weight: $fontSemiBold;
+  line-height: spacing(6);
+}
+
+@mixin fontFootnote {
+  font-size: $fontSizeFootnote;
+  font-weight: $fontNormal;
+  line-height: spacing(5);
+}
+
+@mixin fontCaption1 {
+  font-size: $fontSizeCaption1;
+  font-weight: $fontNormal;
+  line-height: spacing(4);
+}
+
+@mixin fontCaption2 {
+  font-size: $fontSizeCaption2;
+  font-weight: $fontLight;
+  line-height: spacing(4);
+}

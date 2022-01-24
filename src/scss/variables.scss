@@ -1,0 +1,65 @@
+@import "./functions";
+
+// colors
+$colorPrimary: #6a4f8c;
+$colorPrimaryHover: darken($colorPrimary, 5);
+$colorPrimaryPressed: darken($colorPrimary, 10);
+
+$colorSecondary: #cfc66c;
+$colorSecondaryHover: darken($colorSecondary, 5);
+$colorSecondaryPressed: darken($colorSecondary, 10);
+
+$colorNeutral1: #000000;
+$colorNeutral2: #333333;
+$colorNeutral3: #666666;
+$colorNeutral4: #999999;
+$colorNeutral5: #cccccc;
+$colorNeutral6: #e8e8e8;
+$colorNeutral7: #f6f3fa;
+$colorNeutral8: #ffffff;
+$colorDanger: #ef2727;
+
+$backgroundNeutral: rgba($colorNeutral1, 0.07);
+$backgroundNeutralDark: rgba($colorNeutral1, 0.1);
+$backgroundPrimary: rgba($colorPrimary, 0.08);
+$backgroundPrimaryDark: rgba($colorPrimary, 0.16);
+$backgroundSecondary: rgba($colorSecondary, 0.25);
+$backgroundSecondaryDark: rgba($colorSecondary, 0.5);
+$backgroundDanger: rgba($colorDanger, 0.12);
+
+// radii
+$roundedDefault: 4px;
+$roundedFull: 9999px;
+
+// font sizes
+$fontSizeTitleLarge: 40px;
+$fontSizeTitle1: 34px;
+$fontSizeTitle2: 22px;
+$fontSizeTitle3: 20px;
+$fontSizeHeadline: 17px;
+$fontSizeBody: 17px;
+$fontSizeCallout: 16px;
+$fontSizeSubHeadline: 14px;
+$fontSizeFootnote: 14px;
+$fontSizeCaption1: 12px;
+$fontSizeCaption2: 11px;
+
+// font weights
+$fontExtraLight: 200;
+$fontLight: 300;
+$fontNormal: 400;
+$fontMedium: 500;
+$fontSemiBold: 600;
+$fontBold: 700;
+
+// container sizes
+$containerSmall: 640px;
+$containerMedium: 768px;
+$containerLarge: 1024px;
+$containerExtraLarge: 1280px;
+
+// shadows
+$shadowThin: 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.24);
+$shadowMedium: 0px 4px 16px rgba(0, 0, 0, 0.08);
+$shadowLarge: 0px 12px 24px rgba(0, 0, 0, 0.12),
+  0px 16px 32px rgba(0, 0, 0, 0.12), 0px 1px 48px rgba(0, 0, 0, 0.12);
