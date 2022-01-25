@@ -37,32 +37,20 @@ export function getPages(params: GetPagesParams): Array<number | MorePages> {
     if (hasLeftSpill && !hasRightSpill) {
       // handle: (1) ... {5 6} [7] {8 9} (10)
       const extraPages = range(startPage - spillOffset, startPage)
-      const formedPages = [
-        MorePages.MORE,
-        ...extraPages,
-        ...pages
-      ]
+      const formedPages = [MorePages.MORE, ...extraPages, ...pages]
       return [1, ...formedPages, totalPages]
     }
 
     if (!hasLeftSpill && hasRightSpill) {
       // handle: (1) {2 3} [4] {5 6} ... (10)
       const extraPages = range(endPage + 1, endPage + spillOffset + 1)
-      const formedPages = [
-        ...pages,
-        ...extraPages,
-        MorePages.MORE
-      ]
+      const formedPages = [...pages, ...extraPages, MorePages.MORE]
       return [1, ...formedPages, totalPages]
     }
 
     if (hasLeftSpill && hasRightSpill) {
       // handle: (1) ... {4 5} [6] {7 8} ... (10)
-      const formedPages = [
-        MorePages.MORE,
-        ...pages,
-        MorePages.MORE
-      ]
+      const formedPages = [MorePages.MORE, ...pages, MorePages.MORE]
       return [1, ...formedPages, totalPages]
     }
 

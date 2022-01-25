@@ -1,31 +1,31 @@
 <template>
-  <button :class="className">
+  <button class="button" :class="classes">
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, PropType } from "vue"
+  import { defineComponent, computed } from "vue"
 
   export default defineComponent({
     name: "JusButton",
     props: {
       size: {
-        type: String as PropType<string>,
+        type: String,
         default: "md",
         validator(value: string): boolean {
           return ["sm", "md", "lg"].includes(value)
         }
       },
       variant: {
-        type: String as PropType<string>,
+        type: String,
         default: "solid",
         validator(value: string): boolean {
           return ["solid", "ghost", "outline"].includes(value)
         }
       },
       variantColor: {
-        type: String as PropType<string>,
+        type: String,
         default: "default",
         validator(value: string): boolean {
           return ["default", "primary", "secondary"].includes(value)
@@ -33,31 +33,16 @@
       }
     },
     setup: (props: Record<string, any>) => {
-      const className = ref(["button"])
-
-      const sizeClassesMap: Record<string, string> = {
-        sm: "button-small",
-        lg: "button-large"
-      }
-
-      const variantClassesMap: Record<string, string> = {
-        solid: "",
-        ghost: "",
-        outline: ""
-      }
-
-      const colorClassesMap: Record<string, string> = {
-        default: "button-default",
-        primary: "button-primary",
-        secondary: "button-secondary"
-      }
-
-      className.value.push(sizeClassesMap[props.size])
-      className.value.push(variantClassesMap[props.variant])
-      className.value.push(colorClassesMap[props.variantColor])
+      const classes = computed(() => ({
+        "button-small": props.size === "sm",
+        "button-large": props.size === "lg",
+        "button-default": props.variantColor === "default",
+        "button-primary": props.variantColor === "primary",
+        "button-secondary": props.variantColor === "secondary"
+      }))
 
       return {
-        className: className.value.filter(Boolean).join(" ")
+        classes
       }
     }
   })
