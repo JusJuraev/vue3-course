@@ -1,5 +1,5 @@
 <template>
-  <navbar />
+  <the-navbar />
 
   <div class="content">
     <router-view />
@@ -7,10 +7,11 @@
 </template>
 
 <script>
-  import Navbar from "@/components/Navbar"
+  import TheNavbar from "@/components/layout/TheNavbar"
+
   export default {
     name: "App",
-    components: { Navbar }
+    components: { TheNavbar }
   }
 </script>
 

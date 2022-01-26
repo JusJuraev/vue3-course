@@ -26,15 +26,15 @@
   }
 }
 
-@mixin transitionSlow($selector) {
+@mixin transitionSlow($selector: all) {
   @include prefix(transition, #{$selector} 400ms ease-in-out);
 }
 
-@mixin transitionDefault($selector) {
+@mixin transitionDefault($selector: all) {
   @include prefix(transition, #{$selector} 250ms ease-in-out);
 }
 
-@mixin transitionFast($selector) {
+@mixin transitionFast($selector: all) {
   @include prefix(transition, #{$selector} 150ms ease-in-out);
 }
 

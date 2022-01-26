@@ -1,8 +1,8 @@
 <template>
-  <jus-container class="custom-container">
+  <app-container class="custom-container">
     <div v-if="loading">Loading...</div>
     <div v-else class="posts">
-      <post
+      <post-item
         :key="post.id"
         v-for="post of posts"
         :title="post.title"
@@ -10,21 +10,21 @@
       />
     </div>
 
-    <pagination v-if="!loading" :total="total" />
-  </jus-container>
+    <the-pagination v-if="!loading" :total="total" />
+  </app-container>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue"
   import { usePosts } from "@/hooks/usePosts"
-  import Pagination from "@/components/Pagination.vue"
-  import Post from "@/components/Post.vue"
+  import ThePagination from "@/components/ThePagination.vue"
+  import PostItem from "@/components/posts/PostItem.vue"
 
   export default defineComponent({
     name: "Posts",
     components: {
-      Pagination,
-      Post
+      ThePagination,
+      PostItem
     },
 
     setup: () => {

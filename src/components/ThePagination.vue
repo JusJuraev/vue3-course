@@ -1,6 +1,6 @@
 <template v-if="totalPages > 1">
   <div class="pagination">
-    <jus-button
+    <app-button
       class="page-nav"
       size="sm"
       variantColor="primary"
@@ -8,7 +8,7 @@
       @click="toPrevPage"
     >
       <vue-feather type="chevron-left"></vue-feather>
-    </jus-button>
+    </app-button>
 
     <div
       :key="page"
@@ -20,7 +20,7 @@
       {{ page }}
     </div>
 
-    <jus-button
+    <app-button
       class="page-nav"
       size="sm"
       variantColor="primary"
@@ -28,7 +28,7 @@
       @click="toNextPage"
     >
       <vue-feather type="chevron-right"></vue-feather>
-    </jus-button>
+    </app-button>
   </div>
 </template>
 

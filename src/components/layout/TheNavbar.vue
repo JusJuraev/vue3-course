@@ -1,11 +1,12 @@
 <template>
   <nav class="navbar">
-    <jus-container>
+    <app-container>
       <div class="navbar__items">
         <router-link to="/">Home</router-link>
+        <router-link to="/inputs">Inputs</router-link>
         <router-link to="/posts">Posts</router-link>
       </div>
-    </jus-container>
+    </app-container>
   </nav>
 </template>
 

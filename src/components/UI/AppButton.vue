@@ -8,7 +8,7 @@
   import { defineComponent, computed } from "vue"
 
   export default defineComponent({
-    name: "JusButton",
+    name: "AppButton",
     props: {
       size: {
         type: String,

@@ -22,9 +22,9 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "src/scss/variables";
-  @import "src/scss/typography";
-  @import "src/scss/mixins";
+  @import "../../scss/variables";
+  @import "../../scss/typography";
+  @import "../../scss/mixins";
 
   .post {
     border-radius: $roundedDefault;

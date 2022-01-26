@@ -1,40 +1,38 @@
 <template>
-  <jus-container>
+  <app-container>
     <div class="wrapper">
       <div class="wrapper__buttons">
-        <jus-button size="lg">Large Button</jus-button>
-        <jus-button size="md">Default Button</jus-button>
-        <jus-button size="sm">Small Button</jus-button>
+        <app-button size="lg">Large Button</app-button>
+        <app-button size="md">Default Button</app-button>
+        <app-button size="sm">Small Button</app-button>
       </div>
       <div class="wrapper__buttons">
-        <jus-button size="lg" variant-color="primary">Large Button</jus-button>
-        <jus-button size="md" variant-color="primary"
-          >Default Button</jus-button
+        <app-button size="lg" variant-color="primary">Large Button</app-button>
+        <app-button size="md" variant-color="primary"
+          >Default Button</app-button
         >
-        <jus-button size="sm" variant-color="primary">Small Button</jus-button>
+        <app-button size="sm" variant-color="primary">Small Button</app-button>
       </div>
       <div class="wrapper__buttons">
-        <jus-button size="lg" variant-color="secondary"
-          >Large Button</jus-button
+        <app-button size="lg" variant-color="secondary"
+          >Large Button</app-button
         >
-        <jus-button size="md" variant-color="secondary"
-          >Default Button</jus-button
+        <app-button size="md" variant-color="secondary"
+          >Default Button</app-button
         >
-        <jus-button size="sm" variant-color="secondary"
-          >Small Button</jus-button
+        <app-button size="sm" variant-color="secondary"
+          >Small Button</app-button
         >
       </div>
     </div>
-  </jus-container>
+  </app-container>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue"
-  import JusContainer from "@/components/UI/JusContainer.vue"
 
   export default defineComponent({
-    name: "Main",
-    components: { JusContainer }
+    name: "Main"
   })
 </script>
 
