@@ -17,8 +17,10 @@
 
 <style lang="scss">
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+  @import "scss/variables";
   @import "scss/functions";
   @import "scss/typography";
+  @import "scss/mixins";
 
   * {
     box-sizing: border-box;
@@ -32,6 +34,33 @@
     font-family: "Inter", sans-serif;
     height: 100%;
     width: 100%;
+  }
+
+  a {
+    @include transitionDefault(color);
+    color: $colorPrimary;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: $colorPrimaryHover;
+    }
+  }
+
+  h1 {
+    @include fontTitleLarge;
+  }
+
+  h2 {
+    @include fontTitle1;
+  }
+
+  h3 {
+    @include fontTitle2;
   }
 
   .content {

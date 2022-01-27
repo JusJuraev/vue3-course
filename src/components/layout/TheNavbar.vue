@@ -2,9 +2,9 @@
   <nav class="navbar">
     <app-container>
       <div class="navbar__items">
-        <router-link to="/">Home</router-link>
-        <router-link to="/inputs">Inputs</router-link>
-        <router-link to="/posts">Posts</router-link>
+        <router-link :to="{ name: 'Main' }">Home</router-link>
+        <router-link :to="{ name: 'Inputs' }">Inputs</router-link>
+        <router-link :to="{ name: 'Posts' }">Posts</router-link>
       </div>
     </app-container>
   </nav>

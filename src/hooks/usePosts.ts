@@ -1,29 +1,26 @@
 import { onMounted, Ref, ref, watch } from "vue"
 import { useRoute } from "vue-router"
-import { injectStrict } from "@/helpers/injectStrict"
-import { AxiosKey } from "@/constants/symbols"
-import { Posts } from "@/types/posts"
-import { POST_LIST } from "@/constants/endpoints"
+import { useRequest } from "@/hooks/useRequest"
+import { PostItem } from "@/types/posts"
 
 interface UsePosts {
-  posts: Ref<Posts[]>
+  posts: Ref<PostItem[]>
   loading: Ref<boolean>
   total: Ref<number>
 }
 
 export function usePosts(): UsePosts {
   const route = useRoute()
-  const request = injectStrict(AxiosKey)
-  const posts = ref<Posts[]>([])
+  const posts = ref<PostItem[]>([])
   const loading = ref(false)
   const total = ref(0)
+
+  const request = useRequest()
 
   function getPosts(page: string) {
     loading.value = true
     request
-      .get<Posts[]>(POST_LIST, {
-        params: { _limit: 10, _page: page }
-      })
+      .get<PostItem[]>(`/posts`, { _limit: 10, _page: page })
       .then((resp) => {
         posts.value = resp.data
         total.value = +resp.headers["x-total-count"]
@@ -40,7 +37,7 @@ export function usePosts(): UsePosts {
   watch(
     () => route.query.page,
     (page) => {
-      getPosts(page as string)
+      page && getPosts(page as string)
     }
   )
 

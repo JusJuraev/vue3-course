@@ -1,27 +1,38 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
+import { createRouter, createWebHistory } from "vue-router"
 import Main from "@/views/Main.vue"
-import Posts from "@/views/Posts.vue"
 import Inputs from "@/views/Inputs.vue"
-
-const routes: RouteRecordRaw[] = [
-  {
-    path: "/",
-    name: "Main",
-    component: Main
-  },
-  {
-    path: "/posts",
-    name: "Posts",
-    component: Posts
-  },
-  {
-    path: "/inputs",
-    name: "Inputs",
-    component: Inputs
-  }
-]
+import Posts from "@/views/Posts.vue"
+import PostsList from "@/components/posts/PostsList.vue"
+import PostDetail from "@/components/posts/PostDetail.vue"
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes: [
+    {
+      path: "/",
+      name: "Main",
+      component: Main
+    },
+    {
+      path: "/posts",
+      component: Posts,
+      children: [
+        {
+          path: "",
+          name: "Posts",
+          component: PostsList
+        },
+        {
+          path: ":id",
+          name: "PostDetail",
+          component: PostDetail
+        }
+      ]
+    },
+    {
+      path: "/inputs",
+      name: "Inputs",
+      component: Inputs
+    }
+  ]
 })

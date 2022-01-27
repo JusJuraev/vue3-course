@@ -1,7 +1,9 @@
 <template>
   <div class="post">
     <div class="post__title">
-      {{ title }}
+      <router-link :to="postDetailLink">
+        {{ title }}
+      </router-link>
     </div>
     <div class="post__body">
       {{ body }}
@@ -10,21 +12,30 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType } from "vue"
+  import { defineComponent } from "vue"
 
   export default defineComponent({
     name: "Post",
     props: {
-      title: String as PropType<string>,
-      body: String as PropType<string>
+      id: Number,
+      title: String,
+      body: String
+    },
+    computed: {
+      postDetailLink() {
+        return {
+          name: "PostDetail",
+          params: { id: this.id }
+        }
+      }
     }
   })
 </script>
 
 <style lang="scss" scoped>
-  @import "../../scss/variables";
-  @import "../../scss/typography";
-  @import "../../scss/mixins";
+  @import "src/scss/variables";
+  @import "src/scss/typography";
+  @import "src/scss/mixins";
 
   .post {
     border-radius: $roundedDefault;
