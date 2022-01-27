@@ -11,7 +11,7 @@
       />
     </div>
 
-    <the-pagination v-if="!loading" :total="total" />
+    <the-pagination :total="total" />
   </app-container>
 </template>
 

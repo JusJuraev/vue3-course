@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType, ref } from "vue"
+  import { defineComponent, PropType, ref, watch } from "vue"
   import { useRoute, useRouter } from "vue-router"
   import { getPages, MorePages } from "@/helpers/pagination"
 
@@ -56,25 +56,45 @@
     setup: (props) => {
       const router = useRouter()
       const route = useRoute()
+      const total = ref(0)
+      const totalPages = ref(getTotalPages(Math.max(total.value, props.total)))
 
       const routeQueryPage = route.query.page
       const currentPage = ref(Number(routeQueryPage) || 1)
-      const totalPages = Math.ceil(props.total / props.limit)
       const pageNeighbours = Math.max(0, Math.min(props.neighbours, 2))
+
+      function getTotalPages(totalCount: number) {
+        return Math.ceil(totalCount / props.limit)
+      }
 
       const pages = ref(
         getPages({
           currentPage: currentPage.value,
-          totalPages,
+          totalPages: totalPages.value,
           pageNeighbours
         })
+      )
+
+      watch(
+        () => props.total,
+        (newTotalCount) => {
+          const newTotalPages = getTotalPages(newTotalCount)
+
+          total.value = newTotalCount
+          totalPages.value = newTotalPages
+          pages.value = getPages({
+            currentPage: currentPage.value,
+            totalPages: newTotalPages,
+            pageNeighbours
+          })
+        }
       )
 
       const goToPage = (page: number) => {
         currentPage.value = page
         pages.value = getPages({
           currentPage: page,
-          totalPages,
+          totalPages: getTotalPages(total.value),
           pageNeighbours
         })
 
