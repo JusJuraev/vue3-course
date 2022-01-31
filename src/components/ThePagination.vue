@@ -1,5 +1,5 @@
-<template v-if="totalPages > 1">
-  <div class="pagination">
+<template>
+  <div v-if="showPagination" class="pagination">
     <app-button
       class="page-nav"
       size="sm"
@@ -51,6 +51,11 @@
       neighbours: {
         type: Number as PropType<number>,
         default: 2
+      }
+    },
+    computed: {
+      showPagination() {
+        return this.totalPages > 1
       }
     },
     setup: (props) => {

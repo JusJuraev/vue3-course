@@ -5,7 +5,7 @@ import Posts from "@/views/Posts.vue"
 import PostsList from "@/components/posts/PostsList.vue"
 import PostDetail from "@/components/posts/PostDetail.vue"
 
-export default createRouter({
+export const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
     {

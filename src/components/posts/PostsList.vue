@@ -1,5 +1,5 @@
 <template>
-  <app-container size="md" class="custom-container">
+  <app-container size="md">
     <div v-if="loading">Loading...</div>
     <div v-else class="posts">
       <post-item
@@ -27,7 +27,6 @@
       ThePagination,
       PostItem
     },
-
     setup: () => {
       const { posts, loading, total } = usePosts()
 

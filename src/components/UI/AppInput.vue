@@ -3,6 +3,7 @@
     <label v-if="label" :for="name">{{ label }}</label>
     <input
       :id="name"
+      :name="name"
       v-bind="$attrs"
       @input="$emit('update:modelValue', $event.target.value)"
     />

@@ -4,7 +4,8 @@ import VueFeather from "vue-feather"
 import App from "./App.vue"
 import request from "@/helpers/request"
 import { AxiosKey } from "@/constants/symbols"
-import router from "@/router"
+import { router } from "@/router"
+import { store, key } from "@/store"
 import UIComponents from "@/components/UI"
 
 const app = createApp(App)
@@ -17,4 +18,7 @@ UIComponents.forEach((component) => {
 // initialize feather icons
 app.component(VueFeather.name as string, VueFeather)
 
-app.use(router).provide(AxiosKey, request).mount("#app")
+app.use(router)
+app.use(store, key)
+app.provide(AxiosKey, request)
+app.mount("#app")

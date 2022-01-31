@@ -1,5 +1,7 @@
 <template>
   <app-container>
+    <app-counter></app-counter>
+
     <div class="wrapper">
       <div class="wrapper__buttons">
         <app-button size="lg">Large Button</app-button>
@@ -7,22 +9,26 @@
         <app-button size="sm">Small Button</app-button>
       </div>
       <div class="wrapper__buttons">
-        <app-button size="lg" variant-color="primary">Large Button</app-button>
-        <app-button size="md" variant-color="primary"
-          >Default Button</app-button
-        >
-        <app-button size="sm" variant-color="primary">Small Button</app-button>
+        <app-button size="lg" variant-color="primary">
+          Large Button
+        </app-button>
+        <app-button size="md" variant-color="primary">
+          Default Button
+        </app-button>
+        <app-button size="sm" variant-color="primary">
+          Small Button
+        </app-button>
       </div>
       <div class="wrapper__buttons">
-        <app-button size="lg" variant-color="secondary"
-          >Large Button</app-button
-        >
-        <app-button size="md" variant-color="secondary"
-          >Default Button</app-button
-        >
-        <app-button size="sm" variant-color="secondary"
-          >Small Button</app-button
-        >
+        <app-button size="lg" variant-color="secondary">
+          Large Button
+        </app-button>
+        <app-button size="md" variant-color="secondary">
+          Default Button
+        </app-button>
+        <app-button size="sm" variant-color="secondary">
+          Small Button
+        </app-button>
       </div>
     </div>
   </app-container>
@@ -30,9 +36,11 @@
 
 <script lang="ts">
   import { defineComponent } from "vue"
+  import AppCounter from "@/components/AppCounter.vue"
 
   export default defineComponent({
-    name: "Main"
+    name: "Main",
+    components: { AppCounter }
   })
 </script>
 
@@ -45,6 +53,7 @@
   .wrapper {
     @include postfix(display, grid);
     grid-gap: spacing(6);
+    margin-top: spacing(16);
 
     &__buttons {
       @include flex();
