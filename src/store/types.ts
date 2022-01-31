@@ -1,8 +1,10 @@
 import { ActionContext } from "vuex"
-import { CounterState } from "./counter/types"
+import { CounterState } from "@/store/counter/types"
+import { PostsState } from "@/store/posts/types"
 
 export interface RootState {
   counter: CounterState
+  posts: PostsState
 }
 
 export interface AugmentedActionContext<

@@ -3,10 +3,12 @@ import { createStore, useStore as baseUseStore, Store } from "vuex"
 import { RootState } from "./types"
 
 import counter from "./counter"
+import posts from "./posts"
 
 export const store = createStore({
   modules: {
-    counter
+    counter,
+    posts
   }
 })
 

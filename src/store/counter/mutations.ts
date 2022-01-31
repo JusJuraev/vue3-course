@@ -1,9 +1,9 @@
 import { CounterMutations } from "@/store/counter/types"
 
-const mutationsSimple: CounterMutations = {
+const mutations: CounterMutations = {
   setCounter: (state, payload: number) => {
     state.counter = payload
   }
 }
 
-export default mutationsSimple
+export default mutations

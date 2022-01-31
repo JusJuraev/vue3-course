@@ -1,9 +1,9 @@
 <template>
   <app-container size="md">
-    <div v-if="loading">Loading...</div>
+    <div v-if="postsData.loading">Loading...</div>
     <div v-else class="posts">
       <post-item
-        v-for="post of posts"
+        v-for="post of postsData.data"
         :key="post.id"
         :id="post.id"
         :title="post.title"
@@ -11,7 +11,7 @@
       />
     </div>
 
-    <the-pagination :total="total" />
+    <the-pagination :total="postsData.total" />
   </app-container>
 </template>
 
@@ -28,12 +28,10 @@
       PostItem
     },
     setup: () => {
-      const { posts, loading, total } = usePosts()
+      const postsData = usePosts()
 
       return {
-        posts,
-        loading,
-        total
+        postsData
       }
     }
   })

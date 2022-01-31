@@ -1,49 +1,28 @@
-import { onMounted, Ref, ref, watch } from "vue"
+import { computed, onMounted, watch, ComputedRef } from "vue"
 import { useRoute } from "vue-router"
-import { useRequest } from "@/hooks/useRequest"
+import { useStore } from "@/store"
 import { PostItem } from "@/types/posts"
+import { ListDataGetter } from "@/types/vuex"
 
-interface UsePosts {
-  posts: Ref<PostItem[]>
-  loading: Ref<boolean>
-  total: Ref<number>
-}
-
-export function usePosts(): UsePosts {
+export function usePosts(): ComputedRef<ListDataGetter<PostItem>> {
+  const store = useStore()
   const route = useRoute()
-  const posts = ref<PostItem[]>([])
-  const loading = ref(false)
-  const total = ref(0)
+  const listData = computed(() => store.getters["posts/postListData"])
 
-  const request = useRequest()
-
-  function getPosts(page: string) {
-    loading.value = true
-    request
-      .get<PostItem[]>(`/posts`, { _limit: 10, _page: page })
-      .then((resp) => {
-        posts.value = resp.data
-        total.value = +resp.headers["x-total-count"]
-      })
-      .finally(() => {
-        loading.value = false
-      })
+  function fetchPosts(page: string) {
+    store.dispatch("posts/fetchPostList", { _limit: 10, _page: page })
   }
 
   onMounted(() => {
-    getPosts(route.query.page as string)
+    fetchPosts(route.query.page as string)
   })
 
   watch(
     () => route.query.page,
     (page) => {
-      page && getPosts(page as string)
+      page && fetchPosts(page as string)
     }
   )
 
-  return {
-    posts,
-    loading,
-    total
-  }
+  return listData
 }
