@@ -1,7 +1,7 @@
-import { PostsGetters } from "@/store/posts/types"
+import { PostsGetters, PostsGetterTypes } from "@/store/posts/types"
 
 const getters: PostsGetters = {
-  postListData: (state) => {
+  [PostsGetterTypes.POST_LIST_DATA]: (state) => {
     return { ...state.list }
   }
 }

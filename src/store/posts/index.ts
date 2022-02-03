@@ -6,8 +6,12 @@ import getters from "./getters"
 import mutations from "./mutations"
 
 const counterModule: Module<PostsState, RootState> = {
-  namespaced: true,
   state: () => ({
+    item: {
+      data: null,
+      loading: false,
+      error: null
+    },
     list: {
       data: [],
       loading: false,

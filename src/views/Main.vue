@@ -1,7 +1,5 @@
 <template>
   <app-container>
-    <app-counter></app-counter>
-
     <div class="wrapper">
       <div class="wrapper__buttons">
         <app-button size="lg">Large Button</app-button>
@@ -36,11 +34,9 @@
 
 <script lang="ts">
   import { defineComponent } from "vue"
-  import AppCounter from "@/components/AppCounter.vue"
 
   export default defineComponent({
-    name: "Main",
-    components: { AppCounter }
+    name: "Main"
   })
 </script>
 

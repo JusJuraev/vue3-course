@@ -1,10 +1,14 @@
 import { AxiosError } from "axios"
-import { PostsActions, PostsMutationTypes } from "@/store/posts/types"
+import {
+  PostsActions,
+  PostsActionTypes,
+  PostsMutationTypes
+} from "@/store/posts/types"
 import request from "@/helpers/request"
 import { PostItem } from "@/types/posts"
 
 const actions: PostsActions = {
-  fetchPostList: ({ commit }, params) => {
+  [PostsActionTypes.FETCH_POST_LIST]: ({ commit }, params) => {
     commit(PostsMutationTypes.POST_LIST_PENDING, undefined)
 
     request

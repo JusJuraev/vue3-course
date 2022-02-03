@@ -1,17 +1,17 @@
-import { PostsMutations } from "@/store/posts/types"
+import { PostsMutations, PostsMutationTypes } from "@/store/posts/types"
 
 const mutations: PostsMutations = {
-  postListPending: (state) => {
+  [PostsMutationTypes.POST_LIST_PENDING]: (state) => {
     state.list.loading = true
     state.list.error = null
   },
-  postListFulfilled: (state, payload) => {
+  [PostsMutationTypes.POST_LIST_FULFILLED]: (state, payload) => {
     state.list.data = payload.data
     state.list.total = payload.total
     state.list.loading = false
     state.list.error = null
   },
-  postListRejected: (state, payload) => {
+  [PostsMutationTypes.POST_LIST_REJECTED]: (state, payload) => {
     state.list.loading = false
     state.list.data = []
     state.list.error = payload

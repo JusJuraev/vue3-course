@@ -1,10 +1,17 @@
-import { ActionTree, GetterTree, MutationTree } from "vuex"
-import { AugmentedActionContext, RootState } from "@/store/types"
+import { ActionTree, DispatchOptions, GetterTree, MutationTree } from "vuex"
+import {
+  AugmentedActionContext,
+  ModuleCommit,
+  ModuleGetters,
+  ModuleVuexStore,
+  RootState
+} from "@/store/types"
 import { PostItem } from "@/types/posts"
-import { ListDataGetter } from "@/types/vuex"
+import { ListDataGetter, DetailDataGetter } from "@/types/vuex"
 
-export interface PostsState {
+export type PostsState = {
   list: ListDataGetter<PostItem>
+  item: DetailDataGetter<PostItem | null>
 }
 
 export enum PostsActionTypes {
@@ -15,6 +22,10 @@ export enum PostsMutationTypes {
   POST_LIST_PENDING = "postListPending",
   POST_LIST_FULFILLED = "postListFulfilled",
   POST_LIST_REJECTED = "postListRejected"
+}
+
+export enum PostsGetterTypes {
+  POST_LIST_DATA = "postListData"
 }
 
 export interface PostsMutations extends MutationTree<PostsState> {
@@ -37,13 +48,26 @@ export type PostsActionContext = AugmentedActionContext<
   PostsState
 >
 
-export interface PostsActions extends ActionTree<PostsState, RootState> {
+type Actions = {
   [PostsActionTypes.FETCH_POST_LIST](
     context: PostsActionContext,
-    params?: Record<string, any>
+    payload: Record<string, any>
   ): void
 }
 
+export type PostsActions = Actions & ActionTree<PostsState, RootState>
+
 export interface PostsGetters extends GetterTree<PostsState, RootState> {
-  postListData(state: PostsState): ListDataGetter<PostItem>
+  [PostsGetterTypes.POST_LIST_DATA](state: PostsState): ListDataGetter<PostItem>
+}
+
+export interface PostsStore<S>
+  extends ModuleVuexStore<S>,
+    ModuleCommit<PostsState, PostsMutations>,
+    ModuleGetters<PostsState, PostsGetters> {
+  dispatch<K extends keyof Actions>(
+    key: K,
+    payload?: Parameters<Actions[K]>[1],
+    options?: DispatchOptions
+  ): ReturnType<Actions[K]>
 }
