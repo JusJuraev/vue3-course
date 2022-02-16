@@ -1,0 +1,82 @@
+@import "src/scss/functions";
+@import "src/scss/variables";
+@import "src/scss/mixins";
+
+$checkboxSize: 18px;
+$radioSize: 20px;
+$rippleSize: 40px;
+
+$checkboxBorderWidth: 2px;
+$checkboxRadius: 2px;
+
+$rippleHoverOpacity: 0.08;
+$rippleFocusOpacity: 0.12;
+$rippleHoverFocusOpacity: 0.16;
+
+@function calculateRippleLeftPos($boxSize) {
+  @return calc(calc(#{$rippleSize} - #{$boxSize}) / 2 * -1);
+}
+
+.toggle-container {
+  align-items: center;
+  display: inline-flex;
+  height: $rippleSize;
+}
+
+.toggle-wrapper {
+  z-index: 0;
+  position: relative;
+  display: inline-flex;
+  color: inherit;
+  font-family: inherit;
+  line-height: inherit;
+
+  &:hover > :slotted(input:not(:disabled)) {
+    opacity: $rippleHoverOpacity;
+
+    &:focus {
+      opacity: $rippleHoverFocusOpacity;
+    }
+  }
+}
+
+@function rippleTransform($scale) {
+  @return scale($scale) translateY(-50%);
+}
+
+.toggle {
+  appearance: none;
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  display: block;
+  margin: 0;
+  width: $rippleSize;
+  height: $rippleSize;
+  background-color: $colorPrimary;
+  box-shadow: none;
+  outline: none;
+  opacity: 0;
+  transform-origin: center 0;
+  transform: rippleTransform(1);
+  pointer-events: none;
+  @include transitionDefault(opacity, transform);
+
+  &:focus {
+    opacity: $rippleFocusOpacity;
+  }
+
+  &:active {
+    opacity: 1;
+    transform: rippleTransform(0);
+    @include transition(0s, trasform, opacity);
+
+    & + span:before {
+      border-color: $colorPrimary;
+    }
+  }
+
+  &:disabled {
+    opacity: 0;
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showPagination" class="pagination">
+  <div v-if="isPaginationShown" class="pagination">
     <app-button
       class="page-nav"
       size="sm"
@@ -7,7 +7,7 @@
       :disabled="currentPage === 1"
       @click="toPrevPage"
     >
-      <vue-feather type="chevron-left"></vue-feather>
+      <svg-icon icon="chevron_left"></svg-icon>
     </app-button>
 
     <div
@@ -27,103 +27,82 @@
       :disabled="currentPage === totalPages"
       @click="toNextPage"
     >
-      <vue-feather type="chevron-right"></vue-feather>
+      <svg-icon icon="chevron_right"></svg-icon>
     </app-button>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType, ref, watch } from "vue"
-  import { useRoute, useRouter } from "vue-router"
-  import { getPages, MorePages } from "@/helpers/pagination"
+  import { computed, defineComponent, ref } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  import { getPages, MorePages } from "@/helpers/pagination";
 
   export default defineComponent({
     name: "Pagination",
     props: {
       total: {
-        type: Number as PropType<number>,
-        required: true
+        type: Number,
+        required: true,
       },
       limit: {
-        type: Number as PropType<number>,
-        default: 10
+        type: Number,
+        default: 10,
       },
       neighbours: {
-        type: Number as PropType<number>,
-        default: 2
-      }
+        type: Number,
+        default: 2,
+      },
     },
     computed: {
-      showPagination() {
-        return this.totalPages > 1
-      }
+      isPaginationShown() {
+        return this.totalPages > 1;
+      },
     },
     setup: (props) => {
-      const router = useRouter()
-      const route = useRoute()
-      const total = ref(0)
-      const totalPages = ref(getTotalPages(Math.max(total.value, props.total)))
+      const router = useRouter();
+      const route = useRoute();
+      const totalPages = computed(() => getTotalPages(props.total));
 
-      const routeQueryPage = route.query.page
-      const currentPage = ref(Number(routeQueryPage) || 1)
-      const pageNeighbours = Math.max(0, Math.min(props.neighbours, 2))
+      const routeQueryPage = route.query.page;
+      const currentPage = ref(Number(routeQueryPage) || 1);
+      const pageNeighbours = Math.max(0, Math.min(props.neighbours, 2));
 
       function getTotalPages(totalCount: number) {
-        return Math.ceil(totalCount / props.limit)
+        return Math.ceil(totalCount / props.limit);
       }
 
-      const pages = ref(
+      const pages = computed(() =>
         getPages({
           currentPage: currentPage.value,
           totalPages: totalPages.value,
-          pageNeighbours
+          pageNeighbours,
         })
-      )
-
-      watch(
-        () => props.total,
-        (newTotalCount) => {
-          const newTotalPages = getTotalPages(newTotalCount)
-
-          total.value = newTotalCount
-          totalPages.value = newTotalPages
-          pages.value = getPages({
-            currentPage: currentPage.value,
-            totalPages: newTotalPages,
-            pageNeighbours
-          })
-        }
-      )
+      );
 
       const goToPage = (page: number) => {
-        currentPage.value = page
-        pages.value = getPages({
-          currentPage: page,
-          totalPages: getTotalPages(total.value),
-          pageNeighbours
-        })
+        currentPage.value = page;
 
         return router.replace({
           path: route.path,
-          query: { ...route.query, page }
-        })
-      }
+          query: { ...route.query, page },
+        });
+      };
 
       const navigate = (page: number | MorePages) => {
         if (page === MorePages.MORE) {
-          return
+          return;
         }
 
-        return goToPage(page)
-      }
+        return goToPage(page);
+      };
 
       const toPrevPage = () => {
-        return goToPage(currentPage.value - 1)
-      }
+        return goToPage(currentPage.value - 1);
+      };
 
       const toNextPage = () => {
-        return goToPage(currentPage.value + 1)
-      }
+        return goToPage(currentPage.value + 1);
+      };
 
       return {
         pages,
@@ -131,10 +110,10 @@
         currentPage,
         navigate,
         toPrevPage,
-        toNextPage
-      }
-    }
-  })
+        toNextPage,
+      };
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -144,7 +123,8 @@
   @import "src/scss/variables";
 
   .pagination {
-    @include flex(center);
+    align-items: center;
+    display: flex;
     margin-top: spacing(8);
 
     & .page {
@@ -164,9 +144,11 @@
   }
 
   .page-nav {
-    @include flex(center, center);
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
-    &.button-small {
+    &.button--small {
       padding: spacing(1);
     }
 

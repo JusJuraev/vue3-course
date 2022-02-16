@@ -15,20 +15,20 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from "vue"
+  import { defineComponent, ref } from "vue";
 
   export default defineComponent({
     name: "Inputs",
     setup: () => {
-      const firstName = ref("")
-      const lastName = ref("")
+      const firstName = ref("");
+      const lastName = ref("");
 
       return {
         firstName,
-        lastName
-      }
-    }
-  })
+        lastName,
+      };
+    },
+  });
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router"
-import Main from "@/views/Main.vue"
-import Inputs from "@/views/Inputs.vue"
-import Posts from "@/views/Posts.vue"
-import PostsList from "@/components/posts/PostsList.vue"
-import PostDetail from "@/components/posts/PostDetail.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import Main from "@/views/Main.vue";
+import Inputs from "@/views/Inputs.vue";
+import Modal from "@/views/Modal.vue";
+import Checkboxes from "@/views/Checkboxes.vue";
+import Posts from "@/views/Posts.vue";
+import PostsList from "@/components/posts/PostsList.vue";
+import PostDetail from "@/components/posts/PostDetail.vue";
 
 export const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -11,7 +13,7 @@ export const router = createRouter({
     {
       path: "/",
       name: "Main",
-      component: Main
+      component: Main,
     },
     {
       path: "/posts",
@@ -20,19 +22,29 @@ export const router = createRouter({
         {
           path: "",
           name: "Posts",
-          component: PostsList
+          component: PostsList,
         },
         {
           path: ":id",
           name: "PostDetail",
-          component: PostDetail
-        }
-      ]
+          component: PostDetail,
+        },
+      ],
     },
     {
       path: "/inputs",
       name: "Inputs",
-      component: Inputs
-    }
-  ]
-})
+      component: Inputs,
+    },
+    {
+      path: "/modal",
+      name: "Modal",
+      component: Modal,
+    },
+    {
+      path: "/checkboxes",
+      name: "Checkboxes",
+      component: Checkboxes,
+    },
+  ],
+});

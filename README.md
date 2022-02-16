@@ -1,4 +1,4 @@
-# vue-3-course
+# Vue 3 Template with Router & Vuex
 
 ## Project setup
 ```

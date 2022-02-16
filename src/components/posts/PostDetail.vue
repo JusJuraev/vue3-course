@@ -10,20 +10,20 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue"
-  import { usePostDetail } from "@/hooks/usePostDetail"
+  import { defineComponent } from "vue";
+  import { usePostDetail } from "@/hooks/usePostDetail";
 
   export default defineComponent({
     name: "PostDetail",
     setup: () => {
-      const { post, loading } = usePostDetail()
+      const { post, loading } = usePostDetail();
 
       return {
         post,
-        loading
-      }
-    }
-  })
+        loading,
+      };
+    },
+  });
 </script>
 
 <style lang="scss" scoped>

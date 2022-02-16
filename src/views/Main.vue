@@ -2,30 +2,154 @@
   <app-container>
     <div class="wrapper">
       <div class="wrapper__buttons">
-        <app-button size="lg">Large Button</app-button>
-        <app-button size="md">Default Button</app-button>
-        <app-button size="sm">Small Button</app-button>
+        <app-button @click="showToast">
+          {{ $i18n.t("button_show_toast") }}
+        </app-button>
+        <app-button>{{ $i18n.t("button_test") }}</app-button>
+        <app-button variant-color="primary">
+          {{ $i18n.t("button_test") }}
+        </app-button>
+        <app-button variant-color="secondary">
+          {{ $i18n.t("button_test") }}
+        </app-button>
+        <app-button variant-color="primary" disabled>
+          {{ $i18n.t("button_test") }}
+        </app-button>
       </div>
+
       <div class="wrapper__buttons">
-        <app-button size="lg" variant-color="primary">
-          Large Button
+        <app-button variant-color="primary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
         </app-button>
-        <app-button size="md" variant-color="primary">
-          Default Button
+        <app-button variant-color="secondary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
         </app-button>
-        <app-button size="sm" variant-color="primary">
-          Small Button
+        <app-button>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
+        </app-button>
+        <app-button disabled>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
         </app-button>
       </div>
+
       <div class="wrapper__buttons">
-        <app-button size="lg" variant-color="secondary">
-          Large Button
+        <app-button variant="stroke">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
         </app-button>
-        <app-button size="md" variant-color="secondary">
-          Default Button
+        <app-button variant="stroke" variant-color="primary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
         </app-button>
-        <app-button size="sm" variant-color="secondary">
-          Small Button
+        <app-button variant="stroke" variant-color="secondary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
+        </app-button>
+        <app-button variant="stroke" variant-color="primary" disabled>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+          {{ $i18n.t("button_test") }}
+        </app-button>
+      </div>
+
+      <div class="wrapper__buttons">
+        <app-button variant="noBg">{{ $i18n.t("button_test") }}</app-button>
+        <app-button variant="noBg" variant-color="primary">
+          {{ $i18n.t("button_test") }}
+        </app-button>
+        <app-button variant="noBg" variant-color="secondary">
+          {{ $i18n.t("button_test") }}
+        </app-button>
+        <app-button variant="noBg" variant-color="primary" disabled>
+          {{ $i18n.t("button_test") }}
+        </app-button>
+      </div>
+
+      <div class="wrapper__buttons">
+        <app-button>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant-color="primary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant-color="secondary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant-color="primary" disabled>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+      </div>
+
+      <div class="wrapper__buttons">
+        <app-button variant="stroke">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant="stroke" variant-color="primary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant="stroke" variant-color="secondary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant="stroke" variant-color="primary" disabled>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+      </div>
+
+      <div class="wrapper__buttons">
+        <app-button variant="noBg">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant="noBg" variant-color="primary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant="noBg" variant-color="secondary">
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
+        </app-button>
+        <app-button variant="noBg" variant-color="primary" disabled>
+          <template #icon>
+            <svg-icon icon="favorite_border"></svg-icon>
+          </template>
         </app-button>
       </div>
     </div>
@@ -33,11 +157,28 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue"
+  import { defineComponent } from "vue";
+  import { useToast } from "vue-toastification";
+  import AppToast from "@/components/UI/AppToast.vue";
 
   export default defineComponent({
-    name: "Main"
-  })
+    name: "Main",
+
+    setup: () => {
+      const toast = useToast();
+
+      const showToast = () => {
+        toast.success({
+          component: AppToast,
+          props: { message: "Hello" },
+        });
+      };
+
+      return {
+        showToast,
+      };
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -52,7 +193,7 @@
     margin-top: spacing(16);
 
     &__buttons {
-      @include flex();
+      display: flex;
       column-gap: spacing(4);
     }
   }

@@ -7,12 +7,12 @@
 </template>
 
 <script>
-  import TheNavbar from "@/components/layout/TheNavbar"
+  import TheNavbar from "@/components/layout/TheNavbar";
 
   export default {
     name: "App",
-    components: { TheNavbar }
-  }
+    components: { TheNavbar },
+  };
 </script>
 
 <style lang="scss">
@@ -48,6 +48,11 @@
 
     &:active {
       color: $colorPrimaryHover;
+    }
+
+    &:focus {
+      color: $colorPrimaryPressed;
+      outline: none;
     }
   }
 

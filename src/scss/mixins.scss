@@ -14,28 +14,37 @@
   #{$property}: $value;
 }
 
-@mixin flex($align: "", $justify: "") {
-  @include postfix(display, flex);
+@mixin transitionSlow($selectors...) {
+  @include transition(400ms, $selectors...);
+}
 
-  @if ($align) {
-    @include prefix(align-items, $align);
+@mixin transitionDefault($selectors...) {
+  @include transition(250ms, $selectors...);
+}
+
+@mixin transitionFast($selectors...) {
+  @include transition(150ms, $selectors...);
+}
+
+@mixin transition($duration, $selectors...) {
+  $result: ();
+
+  @for $i from 1 through length($selectors) {
+    $prop: nth($selectors, $i);
+    $result: append($result, $prop);
+    $result: append($result, ease-in-out $duration);
+
+    @if $i != length($selectors) {
+      $result: append(
+        $result,
+        unquote(
+          $string: ",",
+        )
+      );
+    }
   }
 
-  @if ($justify) {
-    @include prefix(justify-content, $justify);
-  }
-}
-
-@mixin transitionSlow($selector: all) {
-  @include prefix(transition, #{$selector} 400ms ease-in-out);
-}
-
-@mixin transitionDefault($selector: all) {
-  @include prefix(transition, #{$selector} 250ms ease-in-out);
-}
-
-@mixin transitionFast($selector: all) {
-  @include prefix(transition, #{$selector} 150ms ease-in-out);
+  @include prefix(transition, $result);
 }
 
 @mixin linesCount($linesCount) {

@@ -1,24 +1,34 @@
-import { createApp } from "vue"
-import VueFeather from "vue-feather"
+import { createApp } from "vue";
+import VueFinalModal from "vue-final-modal";
+import Toast from "vue-toastification";
 
-import App from "./App.vue"
-import request from "@/helpers/request"
-import { AxiosKey } from "@/constants/symbols"
-import { router } from "@/router"
-import { store, key } from "@/store"
-import UIComponents from "@/components/UI"
+import "@/scss/toaster.scss";
+import App from "@/App.vue";
+import request from "@/helpers/request";
+import { AxiosKey } from "@/constants/symbols";
+import { toastOptions } from "@/constants/toastOptions";
+import i18n from "@/locales/i18n";
+import { router } from "@/router";
+import { key, store } from "@/store";
+import UIComponents from "@/components/UI";
 
-const app = createApp(App)
+const app = createApp(App);
 
 // initialize custom UI components globally
 UIComponents.forEach((component) => {
-  app.component(component.name, component)
-})
+  app.component(component.name, component);
+});
 
-// initialize feather icons
-app.component(VueFeather.name as string, VueFeather)
+// initialize modal
+app.use(VueFinalModal);
 
-app.use(router)
-app.use(store, key)
-app.provide(AxiosKey, request)
-app.mount("#app")
+// initialize toaster
+app.use(Toast, toastOptions);
+
+// initialize i18n
+app.use(i18n);
+
+app.use(router);
+app.use(store, key);
+app.provide(AxiosKey, request);
+app.mount("#app");

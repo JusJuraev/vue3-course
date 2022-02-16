@@ -27,8 +27,18 @@ $backgroundSecondary: rgba($colorSecondary, 0.25);
 $backgroundSecondaryDark: rgba($colorSecondary, 0.5);
 $backgroundDanger: rgba($colorDanger, 0.12);
 
+$keyBackgroundDark: #f6f3fa;
+$backgroundDisabled: rgba(#707374, 0.1);
+
+// borders
+$borderWidthDefault: 1px;
+
 // radii
 $roundedDefault: 4px;
+$roundedMd: 8px;
+$roundedLg: 16px;
+$roundedXl: 24px;
+$rounded2xl: 32px;
 $roundedFull: 9999px;
 
 // font sizes
@@ -63,3 +73,13 @@ $shadowThin: 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.24);
 $shadowMedium: 0px 4px 16px rgba(0, 0, 0, 0.08);
 $shadowLarge: 0px 12px 24px rgba(0, 0, 0, 0.12),
   0px 16px 32px rgba(0, 0, 0, 0.12), 0px 1px 48px rgba(0, 0, 0, 0.12);
+
+// icons
+$iconSizeDefault: 24px;
+
+// modal
+$backdropFilterModal: blur(8px);
+
+$modalSizeSmall: 464px;
+$modalSizeMedium: 624px;
+$modalSizeLarge: 784px;

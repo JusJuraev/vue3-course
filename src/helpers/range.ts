@@ -1,12 +1,12 @@
 export function range(from: number, to: number): number[] {
-  const result: number[] = []
+  const result: number[] = [];
 
-  let n = from
+  let n = from;
 
   while (n < to) {
-    result.push(n)
-    n++
+    result.push(n);
+    n++;
   }
 
-  return result
+  return result;
 }

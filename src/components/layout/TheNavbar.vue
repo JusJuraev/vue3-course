@@ -4,6 +4,8 @@
       <div class="navbar__items">
         <router-link :to="{ name: 'Main' }">Home</router-link>
         <router-link :to="{ name: 'Inputs' }">Inputs</router-link>
+        <router-link :to="{ name: 'Modal' }">Modal</router-link>
+        <router-link :to="{ name: 'Checkboxes' }">Checkboxes</router-link>
         <router-link :to="{ name: 'Posts' }">Posts</router-link>
       </div>
     </app-container>
@@ -11,12 +13,11 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue"
+  import { defineComponent } from "vue";
 
   export default defineComponent({
     name: "Navbar",
-    components: {}
-  })
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -26,14 +27,17 @@
   @import "src/scss/typography";
 
   .navbar {
-    @include flex(center);
+    align-items: center;
     background: $colorPrimary;
-    color: white;
+    color: $colorNeutral8;
+    display: flex;
     height: spacing(18);
 
     &__items {
-      @include flex(center, center);
+      align-items: center;
       column-gap: spacing(3);
+      display: flex;
+      justify-content: center;
 
       a {
         color: inherit;

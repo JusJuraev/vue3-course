@@ -12,24 +12,24 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue"
+  import { defineComponent } from "vue";
 
   export default defineComponent({
     name: "Post",
     props: {
       id: Number,
       title: String,
-      body: String
+      body: String,
     },
     computed: {
       postDetailLink() {
         return {
           name: "PostDetail",
-          params: { id: this.id }
-        }
-      }
-    }
-  })
+          params: { id: this.id },
+        };
+      },
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -39,7 +39,7 @@
 
   .post {
     border-radius: $roundedDefault;
-    border: 2px solid $colorSecondary;
+    border: $borderWidthDefault solid $colorSecondary;
     padding: spacing(4) spacing(5);
 
     &__title {

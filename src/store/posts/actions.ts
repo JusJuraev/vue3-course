@@ -1,29 +1,32 @@
-import { AxiosError } from "axios"
+import { AxiosError } from "axios";
 import {
   PostsActions,
   PostsActionTypes,
-  PostsMutationTypes
-} from "@/store/posts/types"
-import request from "@/helpers/request"
-import { PostItem } from "@/types/posts"
+  PostsMutationTypes,
+} from "@/store/posts/types";
+import request from "@/helpers/request";
+import { PostItem } from "@/types/posts";
 
 const actions: PostsActions = {
   [PostsActionTypes.FETCH_POST_LIST]: ({ commit }, params) => {
-    commit(PostsMutationTypes.POST_LIST_PENDING, undefined)
+    commit(PostsMutationTypes.POST_LIST_PENDING);
 
     request
       .get<PostItem[]>("/posts", { params })
       .then((response) => {
-        const total = +response.headers["x-total-count"]
+        const total = +response.headers["x-total-count"];
         commit(PostsMutationTypes.POST_LIST_FULFILLED, {
           data: response.data,
-          total
-        })
+          total,
+        });
       })
       .catch((error: AxiosError) => {
-        commit(PostsMutationTypes.POST_LIST_REJECTED, error.message)
-      })
-  }
-}
+        commit(PostsMutationTypes.POST_LIST_REJECTED, error.message);
+      });
+  },
+  [PostsActionTypes.FETCH_POST_DETAIL]: ({ commit }) => {
+    console.log(commit);
+  },
+};
 
-export default actions
+export default actions;

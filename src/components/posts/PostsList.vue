@@ -16,25 +16,25 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue"
-  import { usePosts } from "@/hooks/usePosts"
-  import ThePagination from "@/components/ThePagination.vue"
-  import PostItem from "@/components/posts/PostItem.vue"
+  import { defineComponent } from "vue";
+  import { usePosts } from "@/hooks/usePosts";
+  import ThePagination from "@/components/ThePagination.vue";
+  import PostItem from "@/components/posts/PostItem.vue";
 
   export default defineComponent({
     name: "PostsList",
     components: {
       ThePagination,
-      PostItem
+      PostItem,
     },
     setup: () => {
-      const postsData = usePosts()
+      const postsData = usePosts();
 
       return {
-        postsData
-      }
-    }
-  })
+        postsData,
+      };
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
